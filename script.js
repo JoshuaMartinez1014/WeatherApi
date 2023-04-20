@@ -1,30 +1,13 @@
-let cardRow = $(".card-container");
-let cardHtml = `<div class="card">
-<div class="card-body">
-  <h3>Date</h3>
-  <br />
-
-  <img src="..." class="card-img-top" alt="..." />
-  <br /><br />
- <p class="card-info">Temp: 1213</p>
- <p class="card-info">Wind: 201</p>
- <p class="card-info">Humidity: 121</p>
-</div>
-</div>`;
-
-for (let i = 0; i < 5; i++) {
-  cardRow.append(cardHtml);
-}
-
-const apiKey = `5f8c381463b3754d012a2bbf8cd38e60`;
+const apiKey = `1fc508de01708cc02a8532337a6cfff6`;
 let lat;
 let lon;
-let city = "chicago";
+let cityName;
 
 async function searchByCity() {
-  const url1 = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}
+  cityName = $("#searchbar").val();
+  const url1 = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}
 `;
-
+  console.log(url1);
   try {
     const response = await fetch(url1);
     const data = await response.json();
@@ -48,21 +31,79 @@ async function searchByLatLon(lat, lon) {
     const response = await fetch(url2);
     const data = await response.json();
     console.log(data);
-  } catch {
+    console.log(data.daily[1].weather[0].icon);
+    createCards(data);
+    mainForecast(data);
+  } catch (error) {
     console.log("error");
+    console.log(error);
   }
 }
 
-async function app() {
+async function weatherForecast() {
   const { lat, lon } = await searchByCity();
   searchByLatLon(lat, lon);
 }
 
-app();
+let now = dayjs();
+let today = dayjs().format("MM/DD/YYYY");
+let tomorrow = now.add(1, "day");
+console.log(tomorrow.format("dddd, MMMM D, YYYY"));
 
-let dog = {
-  name: "Dizzy",
-  breed: "Ugly",
-};
+function mainForecast(data) {
+  let temp = (((data.daily[0].temp.day - 273.15) * 9) / 5 + 32).toFixed(2);
 
-let { name, breed } = dog;
+  let forecastCard = $(".section-top");
+  let forecastHtml = `
+  <div class="card-body" id="main-forecast">
+  <h2 class="forcast-header">${cityName} (${today})</h2>
+  <h3>${now.format("dddd")}</h3>
+    
+  
+    <img src="https://openweathermap.org/img/wn/${
+      data.daily[0].weather[0].icon
+    }@2x.png" alt="..." style="width: 65px"/>
+    <br /><br />
+   <p class="card-info"><b>Temp:</b>&nbsp&nbsp${temp} F</p>
+   <p class="card-info"><b>Wind:</b>&nbsp&nbsp${
+     data.daily[0].wind_speed
+   } MPH</p>
+   <p class="card-info"><b>Humidity:</b>&nbsp&nbsp${
+     data.daily[0].humidity
+   } %</p>
+  </div>
+  `;
+
+  forecastCard.append(forecastHtml);
+}
+
+function createCards(data) {
+  for (let i = 1; i < 6; i++) {
+    let temp = (((data.daily[i].temp.day - 273.15) * 9) / 5 + 32).toFixed(2);
+    let cardDate = now.add(i + 1, "day");
+
+    console.log(data);
+
+    console.log("card working");
+    let cardRow = $(".card-container");
+    let cardHtml = `<div class="card">
+<div class="card-body">
+<h3>${cardDate.format("dddd")}</h3>
+  <h3>${cardDate.format("MM/DD/YYYY")}</h3>
+  <br />
+
+  <img src="https://openweathermap.org/img/wn/${
+    data.daily[i].weather[0].icon
+  }@2x.png" class="card-img-top" alt="..." style="width: 65px"/>
+  <br />
+ <p class="card-info"><b>Temp:</b>&nbsp&nbsp${temp} F</p>
+ <p class="card-info"><b>Wind:</b>&nbsp&nbsp${data.daily[i].wind_speed} MPH</p>
+ <p class="card-info"><b>Humidity:</b>&nbsp&nbsp${data.daily[i].humidity} %</p>
+</div>
+</div>`;
+
+    cardRow.append(cardHtml);
+  }
+}
+
+$("#submitBtn").click(weatherForecast);

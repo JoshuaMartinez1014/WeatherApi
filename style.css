@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 body {
   font-family: "Open Sans", sans-serif;
@@ -10,11 +11,6 @@ body {
 h1 {
   color: white;
   font-weight: bold;
-}
-
-h2 {
-  margin-bottom: 15px;
-  font-size: 1.7rem;
 }
 
 button {
@@ -41,6 +37,10 @@ input::placeholder {
   font-size: 1.3rem;
 }
 
+img {
+  margin-left: 20px;
+}
+
 .header {
   height: 75px;
   display: flex;
@@ -52,9 +52,13 @@ input::placeholder {
 .main-container {
   display: flex;
   flex-direction: row;
-  background-color: red;
+  /*   background-color: red; */
 }
 
+.section-header {
+  margin-bottom: 15px;
+  font-size: 1.7rem;
+}
 .main-section {
   width: 100%;
 }
@@ -64,7 +68,7 @@ input::placeholder {
   width: 400px;
   padding-left: 15px;
   padding-top: 15px;
-  background-color: aquamarine;
+  /*  background-color: aquamarine; */
 }
 .sidebar-bottom {
   margin-top: 50px;
@@ -75,9 +79,17 @@ input::placeholder {
   height: 30vh;
   width: 90%;
   margin: 15px;
-  padding: 10px;
-  background-color: blueviolet;
+  padding: 15px;
+  /* background-color: blueviolet; */
   border: solid black 2px;
+}
+.forcast-header {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  font-weight: 900;
+}
+#main-forecast {
+  font-size: 1.2rem;
 }
 
 .section-bottom {
@@ -85,7 +97,7 @@ input::placeholder {
   width: 90%;
   margin: 15px;
   padding: 10px;
-  background-color: brown;
+  /* background-color: brown; */
 }
 
 .card-container {
@@ -97,11 +109,16 @@ input::placeholder {
 
 .card {
   padding: 10px;
-  width: 15%;
-  background-color: rgb(38, 51, 80);
+  width: 16%;
+  border-radius: 10px;
+  background: linear-gradient(
+    to bottom,
+    rgb(0, 74, 139),
+    rgba(0, 74, 139, 0.637)
+  );
   color: white;
 }
 
 .card-info {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
