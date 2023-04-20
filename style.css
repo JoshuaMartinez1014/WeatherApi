@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+}
+
+h1 {
+  color: white;
+  font-weight: bold;
+}
+
+h2 {
+  margin-bottom: 15px;
+  font-size: 1.7rem;
+}
+
+button {
+  margin-top: 10px;
+  border-radius: 4px;
+  width: 90%;
+  height: 40px;
+  font-size: 1.3rem;
+}
+
+#submitBtn {
+  background-color: rgb(166, 204, 238);
+}
+
+input {
+  border-radius: 5px;
+  width: 89%;
+  height: 40px;
+  font-size: 1.3rem;
+}
+
+input::placeholder {
+  padding-left: 5px;
+  font-size: 1.3rem;
+}
+
+.header {
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, rgb(21, 99, 167), rgb(1, 42, 78));
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  background-color: red;
+}
+
+.main-section {
+  width: 100%;
+}
+
+.sidebar {
+  height: auto;
+  width: 400px;
+  padding-left: 15px;
+  padding-top: 15px;
+  background-color: aquamarine;
+}
+.sidebar-bottom {
+  margin-top: 50px;
+  border-top: solid grey 2px;
+  padding-top: 30px;
+}
+.section-top {
+  height: 30vh;
+  width: 90%;
+  margin: 15px;
+  padding: 10px;
+  background-color: blueviolet;
+  border: solid black 2px;
+}
+
+.section-bottom {
+  height: 70vh;
+  width: 90%;
+  margin: 15px;
+  padding: 10px;
+  background-color: brown;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.card {
+  padding: 10px;
+  width: 15%;
+  background-color: rgb(38, 51, 80);
+  color: white;
+}
+
+.card-info {
+  margin-bottom: 10px;
+}
